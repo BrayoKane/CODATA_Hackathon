@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Kitui map!</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    #map{ height: 100% }
+    .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    background-color: #474e5d; /* Dark Gray */
+    color: #ffffff
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <h1>Amaranth Grain in Kitui</h1>
+        </div>
+        
+      </div>
+    </div>
+  </nav>
+  <div id="map">
+  </div>
+  <script>
+  // initialize the map
+  var map = L.map('map').setView([-1.375152, 37.995220], 13);
+  var OpenStreetMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  // load GeoJSON from an external file
+  $.getJSON("QAmaranth.geojson",function(data){
+  // add GeoJSON layer to the map once the file is loaded
+  L.geoJson(data).addTo(map);
+  });
+  </script>
+</body>
+</html>
